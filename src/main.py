@@ -5,6 +5,7 @@ from src.allocation_engine import recommend_allocation
 from src.explanation_engine import generate_explanation
 from src.backtest_engine import (
     run_static_backtest,
+    run_dynamic_regime_backtest,
     calculate_performance_metrics
 )
 
@@ -94,9 +95,9 @@ def main():
     returns_df = calculate_returns(price_df)
     returns_df.to_csv("data/canadian_etf_returns.csv")
 
-    backtest_df = run_static_backtest(
+    backtest_df = run_dynamic_regime_backtest(
         returns_df,
-        allocation
+        yield_df
     )
 
     backtest_df.to_csv("data/backtest_results.csv")
